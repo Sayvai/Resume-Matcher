@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "next-dev": "next dev",
+    "fastapi-dev": "pip3 install -r ../requirements.txt && python3 -m uvicorn api.index:app --reload",
+    "dev": "concurrently \"npm run next-dev\" \"npm run fastapi-dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -18,6 +20,7 @@
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "concurrently": "^8.2.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.18",
     "postcss": "8.4.28",
