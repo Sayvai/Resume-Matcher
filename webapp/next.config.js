@@ -11,6 +11,13 @@ const nextConfig = {
       },
     ];
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.node/,
+      use: "raw-loader", // required configuration (and additional raw-loader dependency) to allow for react-pdf to work with Next.js (see https://github.com/wojtekmaj/react-pdf#webpack)
+    });
+    return config;
+  },
 };
 
 module.exports = nextConfig;
