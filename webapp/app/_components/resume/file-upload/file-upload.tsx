@@ -2,33 +2,33 @@
 
 import clsx from "clsx";
 import { useState } from "react";
+import { useGlobalStore } from "@/stores/useGlobalStore";
 
 type FileUploadProps = {
   buttonLabel?: string;
   dropZoneLabel?: string;
-  onUpload: (file: File) => void;
 };
 
 const FileUpload = ({
   buttonLabel = "Select File",
   dropZoneLabel = "Or Drop File Here",
-  onUpload,
 }: FileUploadProps) => {
+  const { setFile } = useGlobalStore();
+
   const [fileName, setFileName] = useState<string>();
   const [isDragging, setIsDragging] = useState(false);
+
+  function saveSelectedFileToState(file: File) {
+    setFileName(file.name);
+    setFile(file);
+  }
 
   function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const uploadedFile = e.target.files?.[0] || null;
 
     if (uploadedFile && uploadedFile.type === "application/pdf") {
-      setFileName(uploadedFile.name);
-      onUpload(uploadedFile);
+      saveSelectedFileToState(uploadedFile);
     }
-  }
-
-  function handleDragOver(e: React.DragEvent<HTMLDivElement>) {
-    e.preventDefault();
-    setIsDragging(true);
   }
 
   function handleDrop(e: React.DragEvent<HTMLDivElement>) {
@@ -38,9 +38,13 @@ const FileUpload = ({
     const droppedFile = e.dataTransfer.files?.[0] || null;
 
     if (droppedFile && droppedFile.type === "application/pdf") {
-      setFileName(droppedFile.name);
-      onUpload(droppedFile);
+      saveSelectedFileToState(droppedFile);
     }
+  }
+
+  function handleDragOver(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+    setIsDragging(true);
   }
 
   return (
