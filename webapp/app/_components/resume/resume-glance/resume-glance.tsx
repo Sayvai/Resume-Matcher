@@ -13,7 +13,7 @@ const ResumeGlance = () => {
       <h2 className="text-4xl font-normal leading-normal">
         Resume at a Glance
       </h2>
-      <div className="text-black bg-[#FFF5F5]">
+      <div className="flex flex-col gap-4 items-center text-black p-8 bg-[#FFF5F5]">
         <PDFViewer />
       </div>
     </section>

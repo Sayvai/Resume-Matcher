@@ -28,7 +28,7 @@ const Header = () => {
               <Button className="bg-white text-black ">
                 Star Us
                 <Image
-                  src="/github.svg"
+                  src="/icons/github.svg"
                   width={24}
                   height={24}
                   alt="GitHub Octocat Logo"

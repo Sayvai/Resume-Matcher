@@ -33,7 +33,7 @@ const PDFViewer = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-8 items-center">
+    <>
       <Document
         inputRef={documentRef}
         file={file}
@@ -65,7 +65,7 @@ const PDFViewer = () => {
           &gt;
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

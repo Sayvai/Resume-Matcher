@@ -6,10 +6,13 @@ type ButtonProps = React.HTMLProps<HTMLButtonElement> & {
 };
 
 const Button = ({ children, type = "button", ...props }: ButtonProps) => {
+  const { className: inheritedClassNames, ...buttonProps } = props;
+
   return (
     <button
       type={type}
-      className={clsx("flex gap-2 w-fit rounded-md p-4", props.className)}
+      className={clsx("flex gap-2 w-fit rounded-md p-4", inheritedClassNames)}
+      {...buttonProps}
     >
       {children}
     </button>
