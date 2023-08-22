@@ -16,7 +16,7 @@ const JOB_DETAIL_TYPE = {
 };
 
 const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
-  const { setJobDescriptions } = useGlobalStore();
+  const { setJobDescriptions, processData } = useGlobalStore();
   const [jobs, setJobs] = useState<JobDescription[]>([]);
 
   const handleAddJobDetail = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -107,6 +107,7 @@ const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
     }
 
     setJobDescriptions(jobs);
+    processData(); // 🤯 from this point, the frontend will submit a request to the backend to proces all user submitted data
   }
 
   return (
