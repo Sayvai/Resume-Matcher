@@ -1,6 +1,7 @@
 import Resume from "@/components/resume/resume";
 import JobDescriptions from "@/components/job-descriptions/job-descriptions";
 import VectorScore from "@/components/vector-score/vector-scores";
+import CommonWords from "@/components/common-words/common-words";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Resume />
       <JobDescriptions />
       <VectorScore />
+      <CommonWords />
     </main>
   );
 }
