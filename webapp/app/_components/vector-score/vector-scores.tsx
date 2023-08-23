@@ -27,12 +27,12 @@ const VectorScore = () => {
         {vectorScoresSet.map((vectorScore) => {
           return (
             <li
-              className="flex flex-col gap-2 border-2 border-dotted border-gray-300"
+              className="flex flex-col gap-2 p-4 border-2 border-dotted border-gray-300"
               key={vectorScore.jobId}
             >
-              <p className="text-lg text-center">
+              <h3 className="text-lg text-center text-gray-500">
                 Score for Job ID: {vectorScore.jobId}
-              </p>
+              </h3>
               <p className="text-7xl text-center font-bold text-blue-500">
                 {vectorScore.score}
               </p>
