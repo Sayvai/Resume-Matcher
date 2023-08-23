@@ -1,6 +1,7 @@
 "use client";
 
 import { useGlobalStore } from "@/stores/useGlobalStore";
+import ProcessingError from "@/components/processing-error/processing-error";
 
 const Suggestions = () => {
   const { isBackendProcessing, resumeProcessorResponse } = useGlobalStore();
@@ -59,12 +60,10 @@ const Suggestions = () => {
   return (
     <section className="flex flex-col gap-12 px-32 py-10">
       <h2 className="text-4xl font-normal leading-normal">Suggestions</h2>
+      {isBackendProcessing && <p>Processing suggestions...</p>}
+      <ProcessingError />
       <div className="flex flex-col gap-8 text-black p-8 bg-[#FFF5F5]">
-        {isBackendProcessing ? (
-          <p>Processing suggestions...</p>
-        ) : (
-          renderSuggestions()
-        )}
+        {renderSuggestions()}
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { JobDescription } from "@/types/job-descriptions";
 import { ResumeProcessorResponse } from "@/types/resume-processor";
+import { getErrorMessage } from "@/utils/error";
 
 type GlobalStoreState = {
   file: File | null;
@@ -48,7 +49,7 @@ export const useGlobalStore = create<GlobalStoreState>((set, get) => ({
       set({ resumeProcessorResponse: result });
     } catch (error) {
       console.error(error);
-      const message = "";
+      const message = getErrorMessage(error);
       set({ processingError: message });
     } finally {
       set({ isBackendProcessing: false });

@@ -2,6 +2,7 @@
 
 import { useGlobalStore } from "@/stores/useGlobalStore";
 import { ElementRef, useEffect, useRef } from "react";
+import ProcessingError from "@/components/processing-error/processing-error";
 
 const VectorScore = () => {
   const { isBackendProcessing, resumeProcessorResponse } = useGlobalStore();
@@ -51,17 +52,15 @@ const VectorScore = () => {
       <h2 className="text-4xl font-normal leading-normal">
         Vector Similarity Score
       </h2>
+      {isBackendProcessing && <p>Processing vector scores...</p>}
+      <ProcessingError />
       <div className="flex flex-col gap-8 text-black p-8 bg-[#FFF5F5]">
         <p>
           The Vector Similarity Score is a measure of how similar your resume is
           to the job description. The higher the score, the more similar your
           resume is to the job description.
         </p>
-        {isBackendProcessing ? (
-          <p>Processing vector score...</p>
-        ) : (
-          renderVectorScores()
-        )}
+        {renderVectorScores()}
       </div>
     </section>
   );

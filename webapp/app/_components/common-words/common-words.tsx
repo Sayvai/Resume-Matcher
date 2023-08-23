@@ -2,6 +2,7 @@
 
 import DOMPurify from "dompurify";
 import { useGlobalStore } from "@/stores/useGlobalStore";
+import ProcessingError from "@/components/processing-error/processing-error";
 
 const CommonWords = () => {
   const { isBackendProcessing, resumeProcessorResponse } = useGlobalStore();
@@ -44,12 +45,10 @@ const CommonWords = () => {
       <h2 className="text-4xl font-normal leading-normal">
         Common Words between Job Descriptions and Resumes Highlighted
       </h2>
+      {isBackendProcessing && <p>Processing common words...</p>}
+      <ProcessingError />
       <div className="flex flex-col gap-8 text-black p-8 bg-[#FFF5F5]">
-        {isBackendProcessing ? (
-          <p>Processing common words...</p>
-        ) : (
-          renderCommonWords()
-        )}
+        {renderCommonWords()}
       </div>
     </section>
   );
