@@ -13,7 +13,7 @@ const FileUpload = ({
   buttonLabel = "Select File",
   dropZoneLabel = "Or Drop File Here",
 }: FileUploadProps) => {
-  const { setFile } = useGlobalStore();
+  const { setFile, clearResumeProcessorResponse } = useGlobalStore();
 
   const [fileName, setFileName] = useState<string>();
   const [isDragging, setIsDragging] = useState(false);
@@ -21,6 +21,7 @@ const FileUpload = ({
   function saveSelectedFileToState(file: File) {
     setFileName(file.name);
     setFile(file);
+    clearResumeProcessorResponse();
   }
 
   function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {

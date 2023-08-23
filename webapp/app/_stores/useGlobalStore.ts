@@ -11,6 +11,7 @@ type GlobalStoreState = {
   setFile: (_file: File) => void;
   setJobDescriptions: (_jobDescriptions: JobDescription[]) => void;
   processData: () => void;
+  clearResumeProcessorResponse: () => void;
 };
 
 export const useGlobalStore = create<GlobalStoreState>((set, get) => ({
@@ -52,5 +53,8 @@ export const useGlobalStore = create<GlobalStoreState>((set, get) => ({
       const message = "";
       set({ processingError: message });
     }
+  },
+  clearResumeProcessorResponse: () => {
+    set({ resumeProcessorResponse: null });
   },
 }));
