@@ -27,6 +27,8 @@ export const useGlobalStore = create<GlobalStoreState>((set, get) => ({
   processData: async () => {
     const { file, jobDescriptions } = get();
 
+    set({ isBackendProcessing: true });
+
     try {
       const formData = new FormData();
       formData.append("resume", file as Blob);
@@ -34,10 +36,6 @@ export const useGlobalStore = create<GlobalStoreState>((set, get) => ({
 
       const response = await fetch("/api/resume-processor", {
         method: "POST",
-        headers: {
-          // "Content-Type": "multipart/form-data",
-          Accept: "*/*",
-        },
         body: formData,
       });
 
@@ -52,6 +50,8 @@ export const useGlobalStore = create<GlobalStoreState>((set, get) => ({
       console.error(error);
       const message = "";
       set({ processingError: message });
+    } finally {
+      set({ isBackendProcessing: false });
     }
   },
   clearResumeProcessorResponse: () => {
