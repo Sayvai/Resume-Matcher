@@ -21,5 +21,5 @@ export type Suggestion = {
 export type ResumeProcessorResponse = {
   vectorScoresSet: VectorScore[];
   commonWordsSet: CommonWords[];
-  suggestions: Suggestion[];
+  suggestionsSet: Suggestion[];
 };
