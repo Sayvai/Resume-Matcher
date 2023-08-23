@@ -9,6 +9,8 @@ type FileUploadProps = {
   dropZoneLabel?: string;
 };
 
+const FILE_TYPES = ["application/pdf"];
+
 const FileUpload = ({
   buttonLabel = "Select File",
   dropZoneLabel = "Or Drop File Here",
@@ -17,6 +19,8 @@ const FileUpload = ({
 
   const [fileName, setFileName] = useState<string>();
   const [isDragging, setIsDragging] = useState(false);
+
+  const acceptedFileTypes = FILE_TYPES.join(", ");
 
   function saveSelectedFileToState(file: File) {
     setFileName(file.name);
@@ -27,7 +31,7 @@ const FileUpload = ({
   function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const uploadedFile = e.target.files?.[0] || null;
 
-    if (uploadedFile && uploadedFile.type === "application/pdf") {
+    if (uploadedFile && FILE_TYPES.includes(uploadedFile.type)) {
       saveSelectedFileToState(uploadedFile);
     }
   }
@@ -38,7 +42,7 @@ const FileUpload = ({
 
     const droppedFile = e.dataTransfer.files?.[0] || null;
 
-    if (droppedFile && droppedFile.type === "application/pdf") {
+    if (droppedFile && FILE_TYPES.includes(droppedFile.type)) {
       saveSelectedFileToState(droppedFile);
     }
   }
@@ -62,7 +66,7 @@ const FileUpload = ({
         type="file"
         id="upload-btn"
         onChange={handleUpload}
-        accept="application/pdf"
+        accept={acceptedFileTypes}
         hidden
         multiple={false}
       />
@@ -72,6 +76,9 @@ const FileUpload = ({
       >
         {buttonLabel}
       </label>
+      <small className="text-center text-gray-300">
+        Accepted file type(s): {acceptedFileTypes}
+      </small>
       {fileName ? (
         <span className="block text-2xl text-center text-emerald-500">
           {fileName}
