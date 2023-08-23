@@ -61,11 +61,15 @@ const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
     return jobs.map((job, index) => {
       const jobNumber = index + 1;
       const inputName = `job_${jobNumber.toString()}`;
+      const jobDetailType =
+        "link" in job ? JOB_DETAIL_TYPE.LINK : JOB_DETAIL_TYPE.DESCRIPTION;
 
       return (
         <div key={job.id} className="flex flex-col gap-2 p-4 bg-[#ededed]">
           <div className="flex justify-between">
-            <label htmlFor={job.id}>Job {`#${jobNumber}`}</label>
+            <label htmlFor={job.id}>
+              Job {`#${jobNumber}`} - [{jobDetailType}]
+            </label>
             <Button
               className="inline-block bg-red-600 px-2 py-1 text-white text-xs"
               aria-label={`Remove job ${jobNumber}`}
