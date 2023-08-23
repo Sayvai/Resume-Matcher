@@ -38,7 +38,7 @@ const Suggestions = () => {
                         className="flex gap-8 justify-between list-disc list-outside-"
                         role="list"
                       >
-                        <li className="w-1/2 list-['✗\002'] marker:text-red-500">
+                        <li className="w-1/2 list-['✗\002'] marker:text-red-500 line-through">
                           {change.changeFrom}
                         </li>
                         <li className="w-1/2 list-['✓\002'] marker:text-green-500">
