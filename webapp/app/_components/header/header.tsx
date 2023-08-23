@@ -11,7 +11,7 @@ const Header = () => {
         height={90}
       />
       <nav className="grow">
-        <ul className="flex justify-center gap-6 text-[#DCCDCD]">
+        <ul className="flex justify-center gap-6 text-[#DCCDCD]" role="list">
           <li>Contributions</li>
           <li>Docs</li>
           <li>Main Site</li>
