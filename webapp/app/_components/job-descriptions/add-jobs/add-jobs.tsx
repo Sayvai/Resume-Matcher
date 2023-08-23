@@ -16,13 +16,20 @@ const JOB_DETAIL_TYPE = {
 };
 
 const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
-  const { setJobDescriptions, processData } = useGlobalStore();
+  const {
+    setJobDescriptions,
+    processData,
+    resumeProcessorResponse,
+    clearResumeProcessorResponse,
+  } = useGlobalStore();
   const [jobs, setJobs] = useState<JobDescription[]>([]);
 
   const handleAddJobDetail = (e: React.MouseEvent<HTMLButtonElement>) => {
     const jobDetailType = e.currentTarget.dataset.jobDetailType;
 
     const randomId = crypto.randomUUID();
+
+    handleClearOutdatedResults();
 
     if (jobDetailType === JOB_DETAIL_TYPE.LINK) {
       return addEmptyJobDetailLink(randomId);
@@ -41,6 +48,13 @@ const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
 
   function removeJobDetail(id: string) {
     setJobs((jobs) => jobs.filter((job) => job.id !== id));
+    handleClearOutdatedResults();
+  }
+
+  function handleClearOutdatedResults() {
+    if (resumeProcessorResponse) {
+      clearResumeProcessorResponse();
+    }
   }
 
   function renderJobs() {
@@ -65,12 +79,14 @@ const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
             <input
               type="url"
               name={inputName}
+              onChange={handleClearOutdatedResults}
               placeholder="Add URL link to job"
             />
           )}
           {"description" in job && (
             <textarea
               name={inputName}
+              onChange={handleClearOutdatedResults}
               placeholder="Add job description"
               rows={10}
             />
