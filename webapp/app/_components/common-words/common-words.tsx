@@ -15,7 +15,7 @@ const CommonWords = () => {
     if (!commonWordsSet) return null;
 
     return (
-      <ul className="flex flex-col gap-6">
+      <ul className="flex flex-col gap-6 bg-[#f9f2f2]">
         {commonWordsSet.map((commonWord) => {
           const sanitisedHtmlText = DOMPurify.sanitize(commonWord.text);
 
@@ -42,13 +42,8 @@ const CommonWords = () => {
         Common Words between Job Descriptions and Resumes Highlighted
       </h2>
       <div className="flex flex-col gap-8 text-black p-8 bg-[#FFF5F5]">
-        <p>
-          The Vector Similarity Score is a measure of how similar your resume is
-          to the job description. The higher the score, the more similar your
-          resume is to the job description.
-        </p>
         {isBackendProcessing ? (
-          <p>Processing vector score...</p>
+          <p>Processing common words...</p>
         ) : (
           renderCommonWords()
         )}
