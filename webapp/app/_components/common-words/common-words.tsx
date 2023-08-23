@@ -15,15 +15,18 @@ const CommonWords = () => {
     if (!commonWordsSet) return null;
 
     return (
-      <ul className="flex flex-col gap-6 bg-[#f9f2f2]">
+      <ul className="flex flex-col gap-6">
         {commonWordsSet.map((commonWord) => {
           const sanitisedHtmlText = DOMPurify.sanitize(commonWord.text);
 
           return (
             <li key={commonWord.jobId}>
-              <article className="flex flex-col gap-2 p-4 border-2 border-dotted border-gray-300">
+              <article className="flex flex-col gap-2 p-4 border-2 border-dotted border-blue-400 bg-[#f9f2f2]">
                 <h3 className="text-lg text-center text-gray-500">
-                  Common Words for Job ID: {commonWord.jobId}
+                  Common Words for Job ID:{" "}
+                  <span className="px-2 bg-gray-500 text-white rounded-md">
+                    {commonWord.jobId}
+                  </span>
                 </h3>
                 <div
                   dangerouslySetInnerHTML={{ __html: sanitisedHtmlText }}

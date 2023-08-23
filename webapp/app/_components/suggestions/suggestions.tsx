@@ -14,15 +14,18 @@ const Suggestions = () => {
     if (!suggestionsSet) return null;
 
     return (
-      <ul className="flex flex-col gap-6 bg-[#f9f2f2]">
+      <ul className="flex flex-col gap-6">
         {suggestionsSet.map((suggestions) => {
           return (
             <li
               key={suggestions.jobId}
-              className="flex flex-col gap-2 p-4 pl-8 border-2 border-dotted border-gray-300"
+              className="flex flex-col gap-2 p-4 pl-8 border-2 border-dotted border-blue-400 bg-[#f9f2f2]"
             >
               <h3 className="text-lg text-center text-gray-500">
-                Suggestions for Job ID: {suggestions.jobId}
+                Suggestions for Job ID:{" "}
+                <span className="px-2 bg-gray-500 text-white rounded-md">
+                  {suggestions.jobId}
+                </span>
               </h3>
               <ul className="flex flex-col gap-3" role="list">
                 {suggestions.changes.map((change, index) => {

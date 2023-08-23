@@ -74,7 +74,13 @@ const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
               Remove
             </Button>
           </div>
-          <small className="text-gray-500">{`(id: ${job.id})`}</small>
+          <small className="text-gray-500">
+            (id:{" "}
+            <span className="px-2 bg-gray-500 text-white rounded-md">
+              {job.id}
+            </span>
+            )
+          </small>
           {"link" in job && (
             <input
               type="url"
