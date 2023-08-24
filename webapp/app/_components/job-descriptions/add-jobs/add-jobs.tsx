@@ -87,6 +87,7 @@ const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
           </small>
           {"link" in job && (
             <input
+              required
               type="url"
               name={inputName}
               onChange={handleClearOutdatedResults}
@@ -95,6 +96,7 @@ const AddJobs = ({ numMaxJobs = 1 }: AddJobsProps) => {
           )}
           {"description" in job && (
             <textarea
+              required
               name={inputName}
               onChange={handleClearOutdatedResults}
               placeholder="Add job description"
